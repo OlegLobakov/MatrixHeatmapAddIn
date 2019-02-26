@@ -1,0 +1,126 @@
+OBJECT Page 56011 Matrix Heatmap Chart
+{
+  OBJECT-PROPERTIES
+  {
+    Date=26.02.19;
+    Time=16:07:19;
+    Modified=Yes;
+    Version List=Matrix Heatmap Demo;
+  }
+  PROPERTIES
+  {
+    CaptionML=ENU=Operations Heatmap;
+    SourceTable=Table485;
+    PageType=CardPart;
+  }
+  CONTROLS
+  {
+    { 1   ;    ;Container ;
+                Name=container;
+                ContainerType=ContentArea }
+
+    { 12  ;1   ;Field     ;
+                CaptionML=[ENU=Status Text;
+                           RUS=Текст статуса];
+                SourceExpr=StatusText;
+                ShowCaption=No }
+
+    { 5   ;1   ;Field     ;
+                Name=MatrixHeatmap;
+                CaptionML=ENU=Business Chart;
+                ControlAddIn=[MatrixHeatmap;PublicKeyToken=ccedd8a906aeb3f1] }
+
+  }
+  CODE
+  {
+    VAR
+      TrailingSalesOrdersSetup@1002 : Record 760;
+      OldTrailingSalesOrdersSetup@1005 : Record 760;
+      TrailingSalesOrdersMgt@1000 : Codeunit 760;
+      StatusText@1003 : Text[250];
+      NeedsUpdate@1001 : Boolean;
+      AllOrdersEnabled@1004 : Boolean INDATASET;
+      OrdersUntilTodayEnabled@1006 : Boolean INDATASET;
+      DelayedOrdersEnabled@1007 : Boolean INDATASET;
+      DayEnabled@1008 : Boolean INDATASET;
+      WeekEnabled@1009 : Boolean INDATASET;
+      MonthEnabled@1010 : Boolean INDATASET;
+      QuarterEnabled@1011 : Boolean INDATASET;
+      YearEnabled@1012 : Boolean INDATASET;
+      AmountEnabled@1013 : Boolean INDATASET;
+      NoOfOrdersEnabled@1014 : Boolean INDATASET;
+      StackedAreaEnabled@1015 : Boolean INDATASET;
+      StackedAreaPctEnabled@1016 : Boolean INDATASET;
+      StackedColumnEnabled@1017 : Boolean INDATASET;
+      StackedColumnPctEnabled@1018 : Boolean INDATASET;
+      IsChartAddInReady@1019 : Boolean;
+      IsChartDataReady@1020 : Boolean;
+
+    EVENT MatrixHeatmap@-5::ControlAddIsReady@6();
+    VAR
+      Date@1101981001 : Record 2000000007;
+      ColumnName@1101981000 : Text;
+    BEGIN
+      CurrPage.MatrixHeatmap.ClearData();
+      CurrPage.MatrixHeatmap.BlockSize(20);
+      CurrPage.MatrixHeatmap.Margin(70,65,5,5);
+
+      //Fill Demo Data
+      CurrPage.MatrixHeatmap.AddRowLabel('Manager 1');
+      CurrPage.MatrixHeatmap.AddRowLabel('Manager 2');
+      CurrPage.MatrixHeatmap.AddRowLabel('Manager 3');
+      CurrPage.MatrixHeatmap.AddRowLabel('Manager 4');
+      CurrPage.MatrixHeatmap.AddRowLabel('Manager 5');
+      CurrPage.MatrixHeatmap.AddRowLabel('Manager 6');
+      CurrPage.MatrixHeatmap.AddRowLabel('Manager 7');
+      CurrPage.MatrixHeatmap.AddRowLabel('Manager 8');
+      CurrPage.MatrixHeatmap.AddRowLabel('Manager 9');
+
+
+      //Values must be in -10..10 range
+      Date.RESET;
+      Date.SETRANGE("Period Start",010119D,200119D);
+      Date.SETRANGE("Period Type",Date."Period Type"::Date);
+      IF Date.FINDSET THEN
+        REPEAT
+          ColumnName := FORMAT(Date."Period Start");
+          CurrPage.MatrixHeatmap.AddColumnLabel(ColumnName);
+          CurrPage.MatrixHeatmap.Add('Manager 1',ColumnName,RANDOM(20)-10,'','Value: '+FORMAT(RANDOM(20)-10));
+          CurrPage.MatrixHeatmap.Add('Manager 2',ColumnName,RANDOM(20)-10,'','Value: '+FORMAT(RANDOM(20)-10));
+          CurrPage.MatrixHeatmap.Add('Manager 3',ColumnName,RANDOM(20)-10,'','Value: '+FORMAT(RANDOM(20)-10));
+          CurrPage.MatrixHeatmap.Add('Manager 4',ColumnName,RANDOM(20)-10,'','Value: '+FORMAT(RANDOM(20)-10));
+          CurrPage.MatrixHeatmap.Add('Manager 5',ColumnName,RANDOM(20)-10,'','Value: '+FORMAT(RANDOM(20)-10));
+          CurrPage.MatrixHeatmap.Add('Manager 6',ColumnName,RANDOM(20)-10,'','Value: '+FORMAT(RANDOM(20)-10));
+          CurrPage.MatrixHeatmap.Add('Manager 7',ColumnName,RANDOM(20)-10,'','Value: '+FORMAT(RANDOM(20)-10));
+          CurrPage.MatrixHeatmap.Add('Manager 8',ColumnName,RANDOM(20)-10,'','Value: '+FORMAT(RANDOM(20)-10));
+          CurrPage.MatrixHeatmap.Add('Manager 9',ColumnName,RANDOM(20)-10,'','Value: '+FORMAT(RANDOM(20)-10));
+        UNTIL Date.NEXT = 0;
+      CurrPage.MatrixHeatmap.Update();
+    END;
+
+    EVENT MatrixHeatmap@-5::ControlAddRefresh@7();
+    BEGIN
+    END;
+
+    EVENT MatrixHeatmap@-5::ControlAddRecreate@8();
+    BEGIN
+    END;
+
+    EVENT MatrixHeatmap@-5::OnError@9(data@1101981000 : Text);
+    BEGIN
+    END;
+
+    EVENT MatrixHeatmap@-5::OnUpdate@10(data@1101981000 : Text);
+    BEGIN
+    END;
+
+    EVENT MatrixHeatmap@-5::OnClicked@11(row@1101981001 : Text;column@1101981000 : Text);
+    BEGIN
+      MESSAGE('Open operations list for row='+row+' and column='+column);
+    END;
+
+    BEGIN
+    END.
+  }
+}
+

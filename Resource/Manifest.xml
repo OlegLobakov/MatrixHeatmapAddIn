@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Manifest>
+  <Resources>
+    <Script>colorbrewer.v1.min.js</Script>
+    <Script>jquery-3.3.1.min.js</Script>
+    <Script>d3.v3.js</Script>
+    <Script>main.js</Script>
+    <StyleSheet>style.css</StyleSheet>
+  </Resources>
+  
+   <ScriptUrls>
+  </ScriptUrls> 
+  
+   <Script>  
+        <![CDATA[  
+           $(document).ready(function() 
+           { 
+              InitializeAddin();
+           });
+        ]]>  
+    </Script>  
+
+    <RefreshScript>
+        <![CDATA[
+             Microsoft.Dynamics.NAV.InvokeExtensibilityMethod('ControlAddRefresh', null);
+        ]]>
+    </RefreshScript>
+
+    <RecreateScript>
+        <![CDATA[
+             Microsoft.Dynamics.NAV.InvokeExtensibilityMethod('ControlAddRecreate', null);
+        ]]>
+    </RecreateScript>
+  
+  
+  <RequestedHeight>300</RequestedHeight>
+  <RequestedWidth>100</RequestedWidth>
+
+  <VerticalStretch>true</VerticalStretch>
+  <HorizontalStretch>true</HorizontalStretch>
+
+  <VerticalShrink>true</VerticalShrink>
+  <HorizontalShrink>true</HorizontalShrink>
+
+  <!--<MinimumHeight>200</MinimumHeight>
+  <MinimumWidth>200</MinimumWidth>-->     
+</Manifest>
+
+
