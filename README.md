@@ -14,7 +14,15 @@ As Control Add-In use D3 Javascript library it works in Windows Client, Tablet a
 <img src="http://img.youtube.com/vi/xVs7Tmvkpew/0.jpg" alt="Warehouse Search" width="480" height="320" border="10" />
 </a>
 
-## Template
+## Installation
+To use this Visual Studio add-in project, you need to configure some settings:
+1. Change Post-build event command line in Visual Studio project properties. (name of javascript resource zip file, paths to Microsoft Dynamics NAV.
+2. Change Build powershell file ImportResource.ps1 (path to Microsoft.Dynamics.Nav.Management.dll, instance name, sn, name of zip file.
+
+Detail information of installation process:
+<a href="https://github.com/Setrange/JavascriptControlAddInTemplate" target="_blank"> https://github.com/Setrange/JavascriptControlAddInTemplate </a>
+
+## Control Add-In Template
 Javascript Control Add-In Template 
 <a href="https://github.com/Setrange/JavascriptControlAddInTemplate" target="_blank"> https://github.com/Setrange/JavascriptControlAddInTemplate </a>
 
