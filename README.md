@@ -15,7 +15,7 @@ As Control Add-In use D3 Javascript library it works in Windows Client, Tablet a
 </a>
 
 ## Installation
-To use this Visual Studio add-in project, you need to configure some settings:
+To use this Visual Studio add-in project for develop your custom solution and autodeploy in NAV, you need to configure some settings:
 1. Change Post-build event command line in Visual Studio project properties. (name of javascript resource zip file, paths to Microsoft Dynamics NAV.
 2. Change Build powershell file ImportResource.ps1 (path to Microsoft.Dynamics.Nav.Management.dll, instance name, sn, name of zip file.
 
