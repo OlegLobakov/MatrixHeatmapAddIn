@@ -44,9 +44,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Dynamics.Framework.UI.Extensibility, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Program Files\Microsoft Dynamics NAV\90\Service\Microsoft.Dynamics.Framework.UI.Extensibility.dll</HintPath>
+    <Reference Include="Microsoft.Dynamics.Framework.UI.Extensibility">
+      <HintPath>..\..\..\..\..\Program Files\Microsoft Dynamics NAV\90\Service\Microsoft.Dynamics.Framework.UI.Extensibility.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
